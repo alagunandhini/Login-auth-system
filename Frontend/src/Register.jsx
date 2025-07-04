@@ -1,13 +1,17 @@
 import { useState } from "react"
-import { Link } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 import axios from "axios";
+
+import { Navigate } from "react-router-dom";
 const Register=()=>{
+    
+
     const [name,setName]=useState("");
     const [email,setEmail]=useState("");
     const [password,setPassword]=useState("");
-    console.log(name)
-        console.log(email)
-            console.log(password)
+    const navigate=useNavigate();
+
+  
  
             //submitted details are send to backend 
             const handlechange=async(e)=>{
@@ -24,12 +28,15 @@ const Register=()=>{
                     name,email,password
                 })
              console.log(res.data)
+            
+              navigate('/',{state:{email,password}});
 
 
 
 
             }catch(e){
                 console.log(e)
+             
 
 
             }
@@ -63,7 +70,7 @@ const Register=()=>{
      </div>
 
      <div className="w-full flex justify-center  ">
-        <button className="bg-teal-300 px-6 py-2 text-white rounded hover:bg-teal-200" type="submit">Submit</button>
+        <button className="bg-teal-300 px-6 py-2 text-white rounded hover:bg-teal-200" type="submit" onClick={()=>handleReg}>Submit</button>
      </div>
 
 
